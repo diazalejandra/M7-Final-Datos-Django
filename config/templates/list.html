@@ -1,0 +1,38 @@
+{%extends 'base.html' %}
+{% block content %}
+<h1 class="text-center">Información de Laboratorios</h1>
+
+<form method="GET">
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Ciudad</th>
+            <th>Pais</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lab in laboratorios %}
+        <tr>
+            <td>{{ lab.nombre }}</td>
+            <td>{{ lab.ciudad }}</td>
+            <td>{{ lab.pais }}</td>
+            <td><a class="btn btn-primary btn-sm" href="update/{{ lab.id }}">Actualizar</a></td>
+            <td><a class="btn btn-danger btn-sm" href="delete/{{ lab.id }}">Eliminar</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>No se encontraron registros</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</form>
+<div class="fixed-bottom m-5">
+    ¿Información de los laboratorios?</br>
+    <a href="#"><--- Volver a la página de inicio</a></br>
+    Usted ha visitado esta página {{ num_visits }} veces
+</div>
+{% endblock%}

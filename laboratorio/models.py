@@ -4,12 +4,15 @@ from datetime import datetime
 # Create your models here.
 class Laboratorio(models.Model):
     nombre = models.CharField(max_length = 128)
+    ciudad = models.CharField(max_length = 128, default = "")
+    pais = models.CharField(max_length = 128, default = "")
 
     def __str__(self):
         return self.nombre
 
 class DirectorGeneral(models.Model):
     nombre = models.CharField(max_length = 128)
+    especialidad = models.CharField(max_length = 128, default = "")
     laboratorio = models.OneToOneField(Laboratorio, on_delete = models.PROTECT)
 
     def __str__(self):
