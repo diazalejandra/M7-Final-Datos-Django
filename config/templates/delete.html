@@ -1,4 +1,13 @@
 {%extends 'base.html' %}
 {% block content %}
- <h1>Eliminar Laboratorio</h1>
+    <h1>Eliminar Laboratorio</h1>
+    <form method="post">
+        {% csrf_token %}
+        Estás seguro de eliminar {{ lab.nombre }} </br>
+        <button type="submit" class="btn btn-danger mt-3">Sí, confirmo</button>
+    </form> 
+    <div class="fixed-bottom m-5">
+        ¿Información de los laboratorios?</br>
+        <a href="/" class="text-decoration-none"><i class="fas fa-home"></i> Volver a la página de inicio</a></br>
+    </div>
 {% endblock%}

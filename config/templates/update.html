@@ -1,4 +1,18 @@
-{%extends 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
- <h1>Actualizar Laboratorio</h1>
-{% endblock%}
+    {% load crispy_forms_tags %}
+    <h1>Editar Laboratorio</h1>
+    <div class="row">
+        <div class="col-5">
+            <form method="post" class="mt-3">
+                {% csrf_token %}
+                {{ formedicion|crispy }}
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <div class="fixed-bottom m-5">
+        ¿Información de los laboratorios?</br>
+        <a href="/" class="text-decoration-none"><i class="fas fa-home"></i> Volver a la página de inicio</a></br>
+    </div>
+{% endblock %}

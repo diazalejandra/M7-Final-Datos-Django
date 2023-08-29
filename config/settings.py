@@ -41,8 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'laboratorio.apps.LaboratorioConfig'
+    'laboratorio.apps.LaboratorioConfig',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,13 +86,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'diazalejandra_db_final_orm',
-        'USER': 'diazalejandra_userdjango',
-        'PASSWORD': 'userdjango',
-        'HOST': 'postgresql-diazalejandra.alwaysdata.net',
+        'ENGINE': 'django.db.backends.postgresql', #'django.db.backends.postgresql'
+        'NAME': os.getenv("DB_NAME"), #'diazalejandra_db_final_orm',
+        'USER': os.getenv("DB_USER"), #'diazalejandra_userdjango'
+        'PASSWORD': os.getenv("DB_PASSWORD"), #'userdjango'
+        'HOST': os.getenv("DB_HOST"), #'postgresql-diazalejandra.alwaysdata.net'
+        'PORT': os.getenv("DB_PORT"), #'5413'
     }
 }
+import sys
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 
 # Password validation
@@ -124,8 +134,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "config/static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles", "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
