@@ -91,7 +91,7 @@ DATABASES = {
         'USER': os.getenv("DB_USER"), #'diazalejandra_userdjango'
         'PASSWORD': os.getenv("DB_PASSWORD"), #'userdjango'
         'HOST': os.getenv("DB_HOST"), #'postgresql-diazalejandra.alwaysdata.net'
-        'PORT': os.getenv("DB_PORT"), #'5413'
+        'PORT': os.getenv("DB_PORT"), #'5432'
     }
 }
 import sys
